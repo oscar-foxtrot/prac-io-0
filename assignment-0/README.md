@@ -5,7 +5,7 @@
 
 ------------------------------------
 
-This is a simple program intended as a test
+This is a simple program intended as a test.
 
 Description:
 Try your luck by rolling the dice
