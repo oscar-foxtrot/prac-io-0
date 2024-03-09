@@ -4,6 +4,10 @@ import uuid
 
 random.seed(24)
 
+# Results obtained via remodelling the input data based on the answers
+# Data taken from:
+# https://github.com/artempyanykh/prac-2017-2018/tree/master/submissions/task3/Smetanin-Pavlov-Osipa-Kononov/results
+
 agg = pd.read_csv('agregate.csv')
 states = ['b1', 'b2', 's1', 's2', 's3', 's4', 'm1', 'm2']
 
