@@ -4,10 +4,6 @@ import uuid
 
 random.seed(24)
 
-# Results obtained via remodelling the input data based on the answers
-# Data taken from:
-# https://github.com/artempyanykh/prac-2017-2018/tree/master/submissions/task3/Smetanin-Pavlov-Osipa-Kononov/results
-
 agg = pd.read_csv('agregate.csv')
 states = ['b1', 'b2', 's1', 's2', 's3', 's4', 'm1', 'm2']
 
@@ -184,7 +180,7 @@ for state in states:
 
     dfd = pd.read_csv(f'MS-{state}-daily.csv')
     df_old = pd.read_csv(f'test_{state}.csv')
-
+    df_steal = pd.read_csv(f'MS-{state}-steal.csv', parse_dates=['date'])
 
     dfd = pd.read_csv(f'MS-{state}-daily.csv')
     dfd_diffs = dfd.copy()
@@ -202,6 +198,20 @@ for state in states:
 
     indexer = dfd_diffs['apple'] >= 0
 
+    ##############
+    steals_ap = []
+    steals_pe = []
+    for year in range(2006, 2016):
+        for month in range(1, 13):
+            ap_st =  df_steal[(df_steal['date'].dt.year == year) & (df_steal['date'].dt.month == month)]['apple'].iloc[0]
+            pe_st =  df_steal[(df_steal['date'].dt.year == year) & (df_steal['date'].dt.month == month)]['pen'].iloc[0]
+            stolen_ap = random.randint(0, ap_st)
+            stolen_pe = random.randint(0, pe_st)
+            steals_ap += [stolen_ap, ap_st - stolen_ap]
+            steals_pe += [stolen_pe, pe_st - stolen_pe]
+    steals_ap = pd.Series(steals_ap, index=df_old[indexer].index)
+    steals_pe = pd.Series(steals_pe, index=df_old[indexer].index)
+    ##############
 
     supply_df = df_old[indexer].iloc[:, 1:4].copy()
 
@@ -211,6 +221,8 @@ for state in states:
     supply_df.loc[1:, 'apple'] = dfd_diffs[indexer].loc[1:, 'apple'] - supply_df.loc[1:, 'apple']
     supply_df.loc[1:, 'pen'] = dfd_diffs[indexer].loc[1:, 'pen'] - supply_df.loc[1:, 'pen']
 
+    supply_df.loc[:, 'apple'] += steals_ap
+    supply_df.loc[:, 'pen'] += steals_pe
     supply_df.to_csv(f'MS-{state}-supply.csv', index=False)
 
 
