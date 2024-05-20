@@ -1,1 +1,3 @@
-# Практикум 3 курс. Осень 2023 - Весна 2024
+# Compsci seminars at Lomonosov MSU, CMC. Fall 2023 - summer 2024
+
+Status: course completed ✔
