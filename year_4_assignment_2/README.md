@@ -1,6 +1,6 @@
 ### An implementation of a method for the solution of a classical transportation problem, a type of a linear programming problem
 
-- English (chosen)
+- English (selected)
 - [Русский](README_ru.md)
 
 Usage:
