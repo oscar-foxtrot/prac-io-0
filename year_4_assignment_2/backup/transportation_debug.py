@@ -240,7 +240,7 @@ def pivot(x, d, tol=1e-12):
     return x_star, pq_leaving
 
 
-def solve_transportation_problem(cost, supply, demand, tol=1e-12):
+def solve_transportation_problem(cost, supply, demand, tol=1e-12, debug_mode=False):
     """
     Найти решение транспортной задачи
     input:
@@ -256,8 +256,16 @@ def solve_transportation_problem(cost, supply, demand, tol=1e-12):
     # найти начальное базисное допустимое решение
     # методом северо-западного угла
     x, basics = find_nwc(supply, demand, tol)
+    if debug_mode:
+        step = 0
 
     while True:
+
+        if debug_mode:
+            step += 1
+            print(f"Матрица поставок, шаг {step}:\n", x)
+            print(f"Номера базисных переменных, шаг {step}:\n", basics)
+
         # вычислить потенциалы и симплекс-множители
         u, v = find_potentials(x, cost, basics)
         delta = find_reduced_costs(x, cost, u, v, tol)
