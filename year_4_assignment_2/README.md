@@ -3,7 +3,8 @@ An implementation of a method for the solution of a classical transportation pro
 Usage:
 
 ```python
-from transportation import solve_transportation_problem     
+from transportation import solve_transportation_problem
+     
 solve_transportation_problem(cost, supply, demand, tol=1e-12)
 ```
 
