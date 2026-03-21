@@ -8,7 +8,7 @@ from transportation import solve_transportation_problem
 solve_transportation_problem(cost, supply, demand, tol=1e-12)
 ```
 
-According ot the prototype:
+According to the prototype:
 
 ```python
 def solve_transportation_problem(cost, supply, demand, tol=1e-12):
