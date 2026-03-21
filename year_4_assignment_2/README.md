@@ -1,4 +1,7 @@
-An implementation of a method for the solution of a classical transportation problem, which is a type of a linear programming problem.
+### An implementation of a method for the solution of a classical transportation problem, a type of a linear programming problem
+
+- English (chosen)
+- [Русский](README_ru.md)
 
 Usage:
 
